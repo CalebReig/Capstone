@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Home{% endblock %}
+
+{% block page_content %}
+    <h1>Patient Health Monitoring</h1>
+    <hr/>
+    <div class="patient-table">
+      <div class="table-header">
+        <div class="table-header-row">
+          <div class="table-title">
+            <h2>Patients</h2>
+          </div>
+          <div class="table-search">
+              {{ wtf.quick_form(patient_form) }}
+          </div>
+        </div>
+      </div>
+    <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Sex</th>
+            <th>Last Seen</th>
+            <th>Primary Provider</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i, patient in enumerate(patients) %}
+        {% if i % 2 != 0 %}
+          <tr class="even">
+        {% else %}
+          <tr class="odd">
+        {% endif %}
+            <td>{{ patient.last_name }}, {{ patient.first_name }}</td>
+            <td>{{ patient.dob_month }}/{{ patient.dob_day }}/{{ patient.dob_year }}</td>
+            <td>{% if patient.sex == False %}Male{% else %}Female{% endif %}</td>
+            <td>{{ patient.last_seen.date() }}</td>
+            <td>{{ provider_lookup(patient.provider_id) }}</td>
+            <td><a href="{{ url_for('main.patient_record', id=patient.id) }}">
+                <button class="btn btn-mini">Records</button></a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        {% if current_user.can(Permission.WRITE) %}
+        <div class="div-button">
+            <a href="{{ url_for('main.add_patient') }}">
+                <button class="btn btn-primary">Add</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+<hr/>
+    <div class="user-table">
+      <div class="table-header">
+        <div class="table-header-row">
+          <div class="table-title">
+            <h2>Users</h2>
+          </div>
+          <div class="table-search">
+              {{ wtf.quick_form(user_form) }}
+          </div>
+        </div>
+      </div>
+        <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th>Location</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i, user in enumerate(users) %}
+        {% if i % 2 != 0 %}
+          <tr class="even">
+        {% else %}
+          <tr class="odd">
+        {% endif %}
+            <td>{{ user.last_name }}, {{ user.first_name }}</td>
+            <td>{{ user.position }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.location }}</td>
+            <td><a href="{{ url_for('main.profile', id=user.id) }}">
+                <button class="btn btn-mini">Profile</button></a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+<hr/>
+
+{% endblock %}

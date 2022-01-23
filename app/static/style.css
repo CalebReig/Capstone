@@ -1,0 +1,104 @@
+      body {
+        background: #FFFFFF;
+        text-align: center;
+      }
+      .navbar-inverse {
+          background-color: #77A6F7;
+      }
+      .navbar {
+          border-radius: 1px;
+          border: 0px;
+      }
+      .navbar-inverse .navbar-brand  {
+          color: #FFFFFF;
+      }
+      .navbar-inverse .navbar-brand:hover  {
+          color: #FFCCBC;
+      }
+      .navbar-inverse .navbar-nav>li>a {
+          color: #FFFFFF;
+      }
+      .navbar-inverse .navbar-nav>li>a:hover {
+          color: #FFCCBC;
+      }
+      a.navbar-brand {
+          margin-top: 5%;
+      }
+      div.div-table {
+        width: 100%;
+        display: table;
+        padding-top: 5%;
+      }
+      div.div-row {
+        display: table-row;
+      }
+      div.div-cell {
+        width: 50%;
+        display: table-cell;
+        vertical-align: middle;
+      }
+      input {
+        margin: 5px;
+      }
+      li {
+        display: inline;
+        padding: 10px;
+      }
+      div.patient-table {
+        padding: 5% 25%;
+      }
+      div.user-table {
+        padding: 5% 25%;
+      }
+      div.table-header {
+        width: 100%;
+        display: table;
+      }
+      div.table-header-row {
+        display: table-row;
+      }
+      div.table-title {
+        width: 50%;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: left;
+      }
+      div.table-search {
+        width: 50%;
+        display: table-cell;
+        vertical-align: middle;
+        display: inline;
+      }
+      table {
+        width: 600px;
+      }
+      th, td {
+        padding: 7px 10px 10px 10px;
+      }
+      th {
+        text-transform: uppercase;
+        font-size: 90%;
+        letter-spacing: 0.1em;
+        border-bottom: 2px solid #111111;
+        border-top: 1px solid #999;
+        text-align: left;
+      }
+      tr.even {
+        background-color: #D3E3FC;
+      }
+      tr.odd {
+        background-color: #FFFFFF;
+      }
+      tr:hover {
+        background-color: #77A6F7;
+      }
+      div.div-button {
+        padding: 2px 0px;
+        margin: 0% 0% 0% 75%;
+      }
+      button.add-button:hover {
+        background-color: #00887A;
+      }
+      button.patient-select:hover {
+        background-color: #00887A;
+      }

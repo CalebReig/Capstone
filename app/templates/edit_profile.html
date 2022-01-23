@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}{{ user.first_name }} {{ user.last_name }}-Profile{% endblock %}
+
+
+{% block page_content %}
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    {% if current_user.is_administrator() %}
+    <h2>Make edits to user profile</h2>
+    {% else %}
+    <h2>Make edits to your profile.</h2>
+    {% endif %}
+    {{ wtf.quick_form(form) }}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}PHM Login{%  endblock %}
+
+{%  block page_content %}
+<div class="div-table">
+    <div class="div-row">
+        <div class="div-cell">
+          <img src="../../static/login_cover.jpg" alt="Login Photo" width="620" height="400" />
+        </div>
+        <!-- login image -->
+        <div id="login" class="div-cell">
+          <h1>Patient Health Monitoring App</h1>
+            {{ wtf.quick_form(form) }}
+          <ul>
+            <li><a href="{{ url_for('auth.confirm_email') }}">Reset Password</a></li>
+            <li><a href="{{ url_for('auth.create_account') }}">Create Account</a></li>
+          </ul>
+        </div>
+        <!-- login form-->
+      </div>
+    </div>
+{%  endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}{{ patient.first_name }} {{ patient.last_name }}-Record{% endblock %}
+
+
+{% block page_content %}
+    <div class="page-header"></div>
+    <h1>{{ patient.first_name }} {{ patient.last_name }}</h1>
+    <p>
+        Sex: {% if patient.sex==False %}Male{% else %}Female{% endif %}
+    </p>
+    <p>
+        DOB: {{ patient.dob_month }}/{{ patient.dob_day }}/{{ patient.dob_year }}
+    </p>
+    {% if current_user.can(Permission.WRITE) %}
+    <a href="{{ url_for('main.edit_patient_info', id=patient.id) }}">
+    <button class="btn btn-primary">Edit Information</button>
+    </a>
+    {% endif %}
+    {% if current_user.can(Permission.ADMIN) %}
+    <a href="{{ url_for('main.delete_patient', id=patient.id) }}">
+    <button class="btn btn-danger">Delete Patient</button>
+    </a>
+    {% endif %}
+    <br/>
+    {% if patient.heart_disease_test_results %}
+        <h3>Heart Disease Test Results: <strong>Not At Risk</strong></h3>
+        <a id="show-heart-disease" href="#">Show Details</a>
+        <div id="hd-hide" style="display: none">
+            <p>Chest Pain Type: {{ patient.chest_pain_type }}</p>
+            <p>Resting Blood Pressure: {{ patient.resting_bp }}</p>
+            <p>Cholesterol: {{ patient.cholesterol }}</p>
+            <p>Fasting Blood Sugar > 120: {{ patient.fasting_bs }}</p>
+            <p>Resting ECG: {{ patient.resting_ecg }}</p>
+            <p>Exercise Angina: {{ patient.exercise_angina }}</p>
+            <p>Oldpeak: {{ patient.oldpeak }}</p>
+            <p>ST Slope: {{ patient.st_slope }}</p>
+        </div>
+    {% endif %}
+    {% if current_user.can(Permission.WRITE) %}
+        <h3>Add Test Results</h3>
+    {{ wtf.quick_form(form) }}
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+    document.getElementById("show-heart-disease").onclick = function() {
+        if (document.getElementById("hd-hide").style.display == "none") {
+            document.getElementById("hd-hide").style.display = "block";
+            document.getElementById("show-heart-disease").textContent = "Hide Details"
+        }
+        else {
+            document.getElementById("hd-hide").style.display = "none"
+            document.getElementById("show-heart-disease").textContent = "Show Details"
+        }
+    }
+    </script>
+{% endblock %}

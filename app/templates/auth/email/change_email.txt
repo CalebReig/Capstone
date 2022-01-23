@@ -1,0 +1,11 @@
+Dear {{ first }} {{ last }},
+
+To confirm your new email address please click the link below:
+
+{{ url_for('auth.update_email', token=token, _external=True) }}
+
+Sincerely,
+
+The Patient Health Monitoring Team
+
+Note: replies to this email address are not monitored

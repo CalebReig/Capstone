@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.first_name }} {{ user.last_name }}-Profile{% endblock %}
+
+
+{% block page_content %}
+    <div class="page-header"></div>
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <p>
+    Located in <a href="http://maps.google.com/?q={{ user.location }}">
+        {{ user.location }}</a>
+    </p>
+    <p>
+        <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+        {% if user==current_user %}
+        <a href="{{ url_for('auth.change_email') }}">Change Email</a>
+        {% endif %}
+    </p>
+    <p>Position: {{ user.position }}</p>
+    </div>
+    {% if current_user.is_administrator() %}
+        <a href="{{ url_for('main.edit_profile_admin', id=user.id) }}">
+        <button class="btn btn-danger">Edit Profile [Admin]</button>
+    </a>
+    {% elif user==current_user %}
+    <a href="{{ url_for('main.edit_profile', id=user.id) }}">
+        <button class="btn btn-primary">Edit Profile</button>
+    </a>
+    {% endif %}
+    {% if current_user.is_administrator() %}
+    <a href="{{ url_for('main.delete_user', id=user.id) }}">
+    <button class="btn btn-danger">Delete User</button>
+    </a>
+    {% endif %}
+{% endblock %}

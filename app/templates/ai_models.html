@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block title %}AI Models{% endblock %}
+
+{% block page_content %}
+    <h1>AI Models Used for Patient Diagnostics</h1>
+    <h2>Heart Disease Detection</h2>
+    <p>The heart disease detection model accurately diagnoses patients with 100% recall on test data.
+    The model is a fully connected neural network with 4 layers. The neural network has a skip connection
+    from layer 2 to layer 4. The skip connection provides the model the ability to make deep and shallow
+    connections and maintain the simple relationships between variables while also discover more complex
+    relationships.</p>
+    <p>The creation, training, and testing of the model can be found
+        <a href="https://github.com/CalebReig/ML-Projects/blob/main/DiseaseDetection/HeartDieseasePrediction.ipynb">
+            here
+        </a></p>
+    <p>Add more details...</p>
+{% endblock %}
